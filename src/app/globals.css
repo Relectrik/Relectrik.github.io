@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: 220 33% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --muted: 218 20% 94%;
+  --muted-foreground: 215 16% 35%;
+  --primary: 222 89% 55%;
+  --primary-foreground: 210 40% 98%;
+  --accent: 186 85% 48%;
+  --accent-foreground: 222 47% 11%;
+  --border: 214 18% 88%;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: 222 47% 8%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 11%;
+  --card-foreground: 210 40% 98%;
+  --muted: 220 20% 18%;
+  --muted-foreground: 215 20% 70%;
+  --primary: 217 90% 65%;
+  --primary-foreground: 222 47% 11%;
+  --accent: 186 75% 60%;
+  --accent-foreground: 222 47% 11%;
+  --border: 216 25% 20%;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+.bg-grid {
+  background-size: 32px 32px;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    hsl(var(--border)) 1px,
+    transparent 0
+  );
+}
+
+.section-padding {
+  @apply py-16 sm:py-20 lg:py-24;
+}
+

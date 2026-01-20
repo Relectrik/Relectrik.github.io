@@ -30,7 +30,7 @@ export async function getGithubRepos(): Promise<RepoMeta[]> {
           { cache: "force-cache" }
         );
         if (!response.ok) {
-          throw new Error("GitHub API response not OK");
+          throw new Error("GitHub API response not OK :(");
         }
         const data = (await response.json()) as {
           full_name: string;

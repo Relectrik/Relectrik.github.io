@@ -20,6 +20,7 @@ import { projects } from "@/data/projects";
 import { awards } from "@/data/awards";
 import { researchHighlight } from "@/data/research";
 import { skillGroups } from "@/data/skills";
+import { education } from "@/data/education";
 import { withBasePath } from "@/lib/base-path";
 import { getGithubRepos } from "@/lib/github";
 
@@ -123,7 +124,13 @@ export default async function HomePage() {
             <Card className="p-6">
               <p>
                 At LMU, I mentor 100+ students as an Algorithms/AI TA and co-lead
-                the ACM community, scaling hackathons and partnerships across campus.
+                the ACM community, scaling hackathons and holding events across campus.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <p>
+                I translate ambiguous goals into clear product roadmaps, balancing
+                research rigor with high-velocity execution in early-stage teams.
               </p>
             </Card>
           </div>
@@ -174,6 +181,39 @@ export default async function HomePage() {
                   </CardContent>
                 </Card>
               </div>
+            ))}
+          </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <section id="education" className="section-padding">
+          <SectionHeading
+            eyebrow="Education"
+            title="CS foundation with applied AI focus."
+            description="Graduate and undergraduate training grounded in systems, AI, and data."
+          />
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            {education.map((item) => (
+              <Card key={item.degree} className="p-6">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.school}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {item.degree} · GPA {item.gpa}
+                    </p>
+                    <p className="text-sm text-muted-foreground">{item.location}</p>
+                  </div>
+                  <Badge>{item.period}</Badge>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {item.courses.map((course) => (
+                    <Badge key={course} variant="outline">
+                      {course}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
             ))}
           </div>
         </section>
@@ -236,7 +276,7 @@ export default async function HomePage() {
         <section id="projects" className="section-padding">
           <SectionHeading
             eyebrow="Projects"
-            title="Featured case studies"
+            title="Featured Projects"
             description="Systems, AI, and data visualization projects with measurable outcomes."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -258,7 +298,7 @@ export default async function HomePage() {
                   </div>
                   <Button asChild variant="link" className="px-0">
                     <Link href={`/projects/${project.slug}`}>
-                      Read Case Study <ArrowRight className="h-4 w-4" />
+                      Read More <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
                 </CardContent>
@@ -274,7 +314,7 @@ export default async function HomePage() {
             <SectionHeading
               eyebrow="Open Source"
               title="GitHub activity snapshot"
-              description="Live repo metadata fetched at build time."
+              description="Live repo metadata."
             />
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {repos.map((repo) => (

@@ -31,7 +31,6 @@ export const experiences = [
     highlights: [
       "Delivered 5+ technical events per year reaching 200+ students and professionals.",
       "Grew LMU Hacks 2025 participation by 180%, spotlighting 3+ new technologies built by attendees.",
-      "Built 5+ industry/faculty partnerships enabling internship placements for members.",
       "Led bi-weekly executive board meetings with seven members to coordinate events and outreach."
     ],
     tags: ["Leadership", "Community", "Events"]

@@ -8,18 +8,40 @@ export type RepoMeta = {
   updatedAt?: string;
 };
 
-const fallbackRepos: RepoMeta[] = projects
-  .filter((project) => project.repo)
-  .map((project) => ({
-    slug: project.slug,
-    name: project.repo as string,
-    href: project.links[0]?.href ?? "https://github.com/relectrik",
-    stars: undefined,
-    updatedAt: undefined
-  }));
+const curatedRepos = ["Relectrik/Projects", "lmu-act-lab/AIarchy"];
+
+const repoEntries = new Map(
+  projects
+    .filter((project) => project.repo)
+    .map((project) => [
+      project.repo as string,
+      {
+        repo: project.repo as string,
+        slug: project.slug,
+        href: project.links[0]?.href ?? "https://github.com/relectrik"
+      }
+    ])
+);
+
+curatedRepos.forEach((repo) => {
+  if (repoEntries.has(repo)) return;
+  repoEntries.set(repo, {
+    repo,
+    slug: repo.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    href: `https://github.com/${repo}`
+  });
+});
+
+const fallbackRepos: RepoMeta[] = Array.from(repoEntries.values()).map((item) => ({
+  slug: item.slug,
+  name: item.repo,
+  href: item.href,
+  stars: undefined,
+  updatedAt: undefined
+}));
 
 export async function getGithubRepos(): Promise<RepoMeta[]> {
-  const repos = projects.filter((project) => project.repo);
+  const repos = Array.from(repoEntries.values());
   if (!repos.length) return [];
 
   try {
@@ -42,7 +64,7 @@ export async function getGithubRepos(): Promise<RepoMeta[]> {
         return {
           slug: project.slug,
           name: data.full_name,
-          href: data.html_url,
+          href: data.html_url ?? project.href,
           stars: data.stargazers_count,
           updatedAt: data.updated_at
         };

@@ -1,9 +1,9 @@
 export const researchHighlight = {
-  title: "Causal Model-based Reinforcement Learning",
+  title: "Hierarchical Population Causal Models",
   subtitle: "Manuscript Under Review",
   advisor: "Dr. Andrew Forney",
   problem:
-    "Multi-agent decision systems lack principled ways to reason about interventions and counterfactual outcomes.",
+    "It is difficult to predict the long-term effects of interventions in complex decision systems.",
   summary:
     "A hierarchical multi-agent reinforcement learning framework grounded in structural causal models to enable interventions and counterfactual reasoning in complex decision systems.",
   techniques: [

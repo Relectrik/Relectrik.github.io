@@ -4,7 +4,7 @@ export const education = [
     degree: "M.S. Computer Science",
     location: "Los Angeles, CA",
     period: "Aug 2025 – May 2026 (Expected)",
-    gpa: "3.92",
+    gpa: "3.94",
     courses: [
       "Concurrency & Distributed Systems",
       "Machine Learning",
